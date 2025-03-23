@@ -1,6 +1,6 @@
 {
   "$schema": "https://schema.tauri.app/config/2",
-  "productName": "cxmpute-provider",
+  "productName": "Cxmpute",
   "version": "0.1.0",
   "identifier": "com.cxmpute-provider.app",
   "build": {
@@ -12,9 +12,10 @@
   "app": {
     "windows": [
       {
-        "title": "cxmpute-provider",
+        "title": "Cxmpute",
         "width": 800,
-        "height": 600
+        "height": 600,
+        "hiddenTitle": true
       }
     ],
     "security": {
