@@ -19,6 +19,11 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   -webkit-text-size-adjust: 100%;
+  --cxmpute-green: #20a191;
+  --cxmpute-pink: #fe91e8;
+  --cxmpute-yellow: #f8cb46;
+  --cxmpute-purple: #91a8eb;
+  --cxmpute-slate: #d4d4cb;
 }
 
 
@@ -41,4 +46,10 @@ html, body {
 
 .container{
   height: 100vh;
+}
+
+/* disable styles for all a tags */
+a {
+  text-decoration: none;
+  color: inherit;
 }

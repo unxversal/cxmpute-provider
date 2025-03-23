@@ -29,7 +29,7 @@
     border: 2px solid black;
     border-radius: 7px;
     padding: 10px;
-    background-color: white; /* This will be overridden by the inline style prop if provided */
+    background-color: #a1b9ff; /* This will be overridden by the inline style prop if provided */
     box-shadow: 5px 5px 0px black;
     cursor: pointer;
     display: flex;
@@ -64,10 +64,21 @@
     position: absolute;
     right: 0;
     bottom: 0;
-    margin: 10px;
+    margin-right: 5px;
 }
 
 .footerTag{
     font-weight: 700;
-    font-size: 14px;
+    font-size: 13px;
+    background-color: #5f7cd5;
+    padding-left: 5px;
+    padding-right: 5px;
+    border-radius: 10px;
+    width: fit-content;
+}
+
+.icon {
+    width: 24px;
+    height: 24px;
+    transition: all 0.3s ease-in-out;
 }
