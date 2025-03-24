@@ -24,6 +24,8 @@
   --cxmpute-yellow: #f8cb46;
   --cxmpute-purple: #91a8eb;
   --cxmpute-slate: #d4d4cb;
+  --cxmpute-lightgreen: #97e1bd;
+  --cxmpute-lightyellow: #f7e48c;
 }
 
 
@@ -165,7 +167,69 @@ a {
 
 .row__card{
   border: 2px solid black;
-  border-radius: 7px;
+  border-radius: 20px;
   box-shadow: 6px 6px 0px black;
+  flex: 1;
+  width: fit-content;
+}
+
+.row__header{
+  display: flex;
   width: 100%;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+}
+
+.row__header h2{
+  margin: 0;
+
+}
+
+.earnings__button{
+  border: 0;
+  outline: 0;
+  background-color: var(--cxmpute-green);
+  padding: 5px;
+  border-radius: 10px;
+  height: fit-content;
+  font-size: 13px;
+  font-weight: 700;
+  text-decoration: underline;
+}
+
+.earnings{
+  background-color: var(--cxmpute-lightgreen);
+}
+
+.row__content{
+  display: flex;
+  padding: 20px;
+  gap: 20px;
+}
+
+.earnings__card{
+  width: 100%;
+  border: 2px solid black;
+  border-radius: 20px;
+  background-color: #f6f6f6;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+}
+
+.earnings__container{
+  flex: 1;
+}
+
+.earnings__right{
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.earnings__card h2{
+  margin: 0;
+  padding: 0;
 }

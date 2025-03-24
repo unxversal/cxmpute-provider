@@ -46,9 +46,9 @@ function App() {
           </div>
         </div>
         <div className="row__one">
-          <div className="row__card">
+          <div className="row__card earnings">
             <div className="row__header">
-              <h1>Earnings</h1>
+              <h2>Earnings</h2>
               <button className="earnings__button">View Referral Earnings</button>
             </div>
             <div className="row__content">
@@ -56,21 +56,21 @@ function App() {
                 <div className="earnings__card">
                   <h2>Lifetime Earnings:</h2>
                   <div className="earnings__right">
-                    <img src="/eight.png" alt="logo" height={50} width={50}/>
+                    <img src="/six.png" alt="logo" height={50} width={50}/>
                     <h3>0.00</h3>
                   </div>
                 </div>
-                <p>Last updated: 1/1/2023 12:00Am</p>
+                <p>Last updated: 1/1/2023 12:00AM</p>
               </div>
               <div className="earnings__container">
                 <div className="earnings__card">
                   <h2>Today's Earnings:</h2>
                   <div className="earnings__right">
-                    <img src="/eight.png" alt="logo" height={50} width={50}/>
+                    <img src="/six.png" alt="logo" height={50} width={50}/>
                     <h3>0.00</h3>
                   </div>
                 </div>
-                <p>Last updated: 1/1/2023 12:00Am</p>
+                <p>Last updated: 1/1/2023 12:00AM</p>
               </div>
             </div>
           </div>
