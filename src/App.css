@@ -46,10 +46,126 @@ html, body {
 
 .container{
   height: 100vh;
+  width: 100vw;
+  display: flex;
+}
+
+.main{
+  width: 100%;
 }
 
 /* disable styles for all a tags */
 a {
   text-decoration: none;
   color: inherit;
+}
+
+.header{
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  padding-left: 20px;
+  padding-right: 20px;
+  padding-top: 20px;
+  height: fit-content;
+}
+
+.referrals__container{
+  display: flex;
+  border: 2px solid black;
+  border-radius: 20px;
+  box-shadow: 5px 5px 0px black;
+  padding: 5px 10px;
+  height: fit-content;
+  align-items: center;
+  transition: all 0.3s ease;
+}
+
+.referrals__container:hover{
+  box-shadow: 7px 7px  0 black;
+  transform: translateY(-3px) translateX(-3px);
+}
+
+.referrals__text{
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-right: 10px;
+  height: fit-content;
+  background-color: var(--cxmpute-pink);
+  border-radius: 10px;
+  font-weight: 700;
+  padding: 0px 5px;
+}
+
+.referrals__text span, .referrals__text p{
+  margin: 0;
+}
+
+.referrals__button{
+  border: 2px solid black;
+  border-radius: 20px;
+  padding: 5px 10px;
+  height: fit-content;
+  background-color: var(--cxmpute-green);
+  cursor: pointer;
+}
+
+.headeractions{
+  display: flex;
+  gap: 20px;
+  align-items: center;
+}
+
+.header__left{
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.header__left h2{
+  background-color: var(--cxmpute-purple);
+  padding: 5px;
+  border-radius: 10px;
+}
+
+.notifications__container{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid black;
+  border-radius: 7px;
+  box-shadow: 5px 5px 0px black;
+  padding: 5px 10px;
+  height: fit-content;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  transition: all 0.3s ease;
+  background-color: var(--cxmpute-yellow);
+}
+
+.notifications__container:hover{
+  box-shadow: 7px 7px  0 black;
+  transform: translateY(-3px) translateX(-3px);
+}
+
+.profile__container{
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: 700
+}
+
+.row__one{
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  padding: 20px;
+}
+
+.row__card{
+  border: 2px solid black;
+  border-radius: 7px;
+  box-shadow: 6px 6px 0px black;
+  width: 100%;
 }

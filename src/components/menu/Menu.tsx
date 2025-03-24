@@ -25,10 +25,10 @@ const Menu = () => {
                         <Button text="Dashboard" backgroundColor={cxmputeYellow} />
                     </div>
                     <div className={styles.item}>
-                        <Button text="Referral Program" backgroundColor={cxmputeYellow} />
+                        <Button text="Referral Program" backgroundColor={cxmputePink} />
                     </div>
                     <div className={styles.item}>
-                        <Button text="Rewards" backgroundColor={cxmputeYellow} />
+                        <Button text="Rewards" backgroundColor={cxmputeGreen} />
                     </div>
                     
                 </div>

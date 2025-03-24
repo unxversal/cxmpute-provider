@@ -1,7 +1,7 @@
-import { useState } from "react";
-import { invoke } from "@tauri-apps/api/core";
+import { useState, useEffect } from "react";
 import "./App.css";
 import Menu from "./components/menu/Menu";
+import { Bell, ToggleLeft, ToggleRight, Users } from "lucide-react";
 
 const cxmputeGreen = "#20a191";
 const cxmputePink = "#fe91e8";
@@ -14,17 +14,70 @@ const cxmputeSlate = "#d4d4cb";
 // const cxmputeBeigerBeige = "#fdede3";
 
 function App() {
-  const [greetMsg, setGreetMsg] = useState("");
-  const [name, setName] = useState("");
 
-  async function greet() {
-    // Learn more about Tauri commands at https://tauri.app/develop/calling-rust/
-    setGreetMsg(await invoke("greet", { name }));
-  }
+  const [username, setUsername] = useState("");
 
   return (
     <main className="container">
       <Menu />
+      <div className="main">
+        <div className="header">
+          <div className="header__left">
+            <h2>Dashboard</h2>
+            <div className="referrals__container">
+              <div className="referrals__text">
+                <Users size={20}/>
+                <p>Referrals: </p>
+                <span>0</span>
+              </div>
+              <button className="referrals__button">COPY REFERRAL CODE</button>
+            </div>
+          </div>
+          <div className="headeractions">
+            <div className="profile__container">
+              <div className="profile__username">Hello, {username}!</div>
+              {/* <div className="profile__image">
+                <img src="/six.png" alt="logo" height={50} width={50}/>
+              </div> */}
+            </div>
+            <div className="notifications__container">
+              <Bell size={20}/>
+            </div>
+          </div>
+        </div>
+        <div className="row__one">
+          <div className="row__card">
+            <div className="row__header">
+              <h1>Earnings</h1>
+              <button className="earnings__button">View Referral Earnings</button>
+            </div>
+            <div className="row__content">
+              <div className="earnings__container">
+                <div className="earnings__card">
+                  <h2>Lifetime Earnings:</h2>
+                  <div className="earnings__right">
+                    <img src="/eight.png" alt="logo" height={50} width={50}/>
+                    <h3>0.00</h3>
+                  </div>
+                </div>
+                <p>Last updated: 1/1/2023 12:00Am</p>
+              </div>
+              <div className="earnings__container">
+                <div className="earnings__card">
+                  <h2>Today's Earnings:</h2>
+                  <div className="earnings__right">
+                    <img src="/eight.png" alt="logo" height={50} width={50}/>
+                    <h3>0.00</h3>
+                  </div>
+                </div>
+                <p>Last updated: 1/1/2023 12:00Am</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div className="row__two"></div>
+        <div className="row__three"></div>
+      </div>
     </main>
   );
 }
