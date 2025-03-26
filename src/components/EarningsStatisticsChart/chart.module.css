@@ -1,0 +1,107 @@
+.chartContainer {
+  background-color: #ffffff;
+  padding: 1rem;
+  border-radius: 0.5rem;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 100%; /* Approximately max-w-4xl */
+}
+
+.chartHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.headerTitle {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.headerIcon {
+  width: 1.25rem;
+  height: 1.25rem;
+}
+
+.chartHeader h2 {
+  font-size: 1.125rem;
+  font-weight: bold;
+  margin: 0;
+}
+
+.viewAllBtn {
+  color: #10B981;
+  font-size: 0.875rem;
+  font-weight: 500;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.chart {
+  height: 16rem;
+}
+
+.tooltip {
+  background-color: #ffffff;
+  padding: 0.5rem;
+  border: 1px solid #e5e7eb;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+  border-radius: 0.375rem;
+  font-size: 0.75rem;
+}
+
+.tooltipDate {
+  font-weight: 600;
+  margin: 0;
+}
+
+.tooltipNetworkEarnings {
+  color: #10B981;
+  margin: 0;
+}
+
+.tooltipReferrals {
+  margin: 0;
+}
+
+.tooltipTotal {
+  font-weight: bold;
+  margin: 0;
+}
+
+.chartFooter {
+  margin-top: 1rem;
+  display: flex;
+  justify-content: center;
+}
+
+.legend {
+  display: flex;
+  gap: 2rem;
+}
+
+.legendItem {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.legendColor {
+  width: 1rem;
+  height: 1rem;
+  border-radius: 50%;
+  border: 1px solid;
+}
+
+.network {
+  background-color: var(--cxmpute-lightgreen);
+  border-color: var(--cxmpute-green);
+}
+
+.referrals {
+  background-color: #e5e7eb;
+  border-color: #d1d5db;
+}

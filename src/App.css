@@ -158,11 +158,12 @@ a {
   font-weight: 700
 }
 
-.row__one{
+.row{
   width: 100%;
   display: flex;
   flex-wrap: wrap;
   padding: 20px;
+  gap: 20px;
 }
 
 .row__card{
@@ -171,6 +172,10 @@ a {
   box-shadow: 6px 6px 0px black;
   flex: 1;
   width: fit-content;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 20px;
 }
 
 .row__header{
@@ -183,7 +188,6 @@ a {
 
 .row__header h2{
   margin: 0;
-
 }
 
 .earnings__button{
@@ -200,6 +204,7 @@ a {
 
 .earnings{
   background-color: var(--cxmpute-lightgreen);
+  flex: 1.25;
 }
 
 .row__content{
@@ -232,4 +237,64 @@ a {
 .earnings__card h2{
   margin: 0;
   padding: 0;
+  background-color: var(--cxmpute-lightgreen);
+  border-radius: 10px;
+  width: min-content;
+}
+
+.earnings__right h3{
+  font-size: 32px;
+  margin: 0;
+  padding: 0;
+}
+
+.connectivity__button{
+  outline: 0;
+  background-color: var(--cxmpute-lightgreen);
+  padding: 5px;
+  border-radius: 35px;
+  height: fit-content;
+  font-size: 16px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  padding: 20px;
+  width: 100%;
+  border: 2px solid black;
+  margin-left: 20px;
+}
+
+.connectivity__row h3{
+  margin: 0;
+  padding: 0;
+  text-align: center;
+}
+
+.connectivity__row p{
+  margin: 0;
+  padding: 0;
+  text-align: center;
+  /* font-size: 13px; */
+  color: #8a8a8a;
+}
+
+.row__footer{
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+  background-color: var(--cxmpute-purple);
+  padding: 10px;
+  border-radius: 40px;
+  border: 2px solid black;
+  margin-top: 10px;
+  font-weight: 700;
+}
+
+.connectivity__text{
+  background-color: var(--cxmpute-lightgreen);
+  border-radius: 5px;
 }

@@ -1,7 +1,8 @@
 import { useState, useEffect } from "react";
 import "./App.css";
 import Menu from "./components/menu/Menu";
-import { Bell, ToggleLeft, ToggleRight, Users } from "lucide-react";
+import { Bell, Circle, ToggleLeft, ToggleRight, Users, Wifi } from "lucide-react";
+import EarningsStatisticsChart from "./components/EarningsStatisticsChart/EarningsStatisticsChart";
 
 const cxmputeGreen = "#20a191";
 const cxmputePink = "#fe91e8";
@@ -45,7 +46,7 @@ function App() {
             </div>
           </div>
         </div>
-        <div className="row__one">
+        <div className="row">
           <div className="row__card earnings">
             <div className="row__header">
               <h2>Earnings</h2>
@@ -56,8 +57,8 @@ function App() {
                 <div className="earnings__card">
                   <h2>Lifetime Earnings:</h2>
                   <div className="earnings__right">
-                    <img src="/six.png" alt="logo" height={50} width={50}/>
-                    <h3>0.00</h3>
+                    <img src="/six.png" alt="logo" height={40} width={40}/>
+                    <h3>203.51</h3>
                   </div>
                 </div>
                 <p>Last updated: 1/1/2023 12:00AM</p>
@@ -66,17 +67,36 @@ function App() {
                 <div className="earnings__card">
                   <h2>Today's Earnings:</h2>
                   <div className="earnings__right">
-                    <img src="/six.png" alt="logo" height={50} width={50}/>
-                    <h3>0.00</h3>
+                    <img src="/six.png" alt="logo" height={40} width={40}/>
+                    <h3>40.01</h3>
                   </div>
                 </div>
                 <p>Last updated: 1/1/2023 12:00AM</p>
               </div>
             </div>
           </div>
+          <div className="row__card connectivity">
+            <div className="row__header">
+              <Wifi size={60}/>
+              <button className="connectivity__button">
+                <Circle size={20} fill={cxmputeGreen}/>
+                Connected
+              </button>
+            </div>
+            <div className="connectivity__row">
+              <h3>Connect more devices to earn more.</h3>
+              <p>You can always disconnect devices in the section below.</p>
+            </div>
+            <div className="row__footer">
+              <span className="connectivity__text">Device Type: </span>
+              <span>Blue Surf</span>
+            </div>
+          </div>
         </div>
-        <div className="row__two"></div>
-        <div className="row__three"></div>
+        <div className="row">
+          <EarningsStatisticsChart />
+        </div>
+        <div className="row"></div>
       </div>
     </main>
   );
