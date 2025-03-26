@@ -58,7 +58,7 @@ function App() {
                   <h2>Lifetime Earnings:</h2>
                   <div className="earnings__right">
                     <img src="/six.png" alt="logo" height={40} width={40}/>
-                    <h3>203.51</h3>
+                    <h3>234.50</h3>
                   </div>
                 </div>
                 <p>Last updated: 1/1/2023 12:00AM</p>
@@ -68,7 +68,7 @@ function App() {
                   <h2>Today's Earnings:</h2>
                   <div className="earnings__right">
                     <img src="/six.png" alt="logo" height={40} width={40}/>
-                    <h3>40.01</h3>
+                    <h3>11.50</h3>
                   </div>
                 </div>
                 <p>Last updated: 1/1/2023 12:00AM</p>
@@ -94,7 +94,9 @@ function App() {
           </div>
         </div>
         <div className="row">
-          <EarningsStatisticsChart />
+          <div className="row__card statistics">
+            <EarningsStatisticsChart />
+          </div>
         </div>
         <div className="row"></div>
       </div>

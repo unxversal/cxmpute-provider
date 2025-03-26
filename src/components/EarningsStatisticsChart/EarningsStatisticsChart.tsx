@@ -12,39 +12,48 @@ const cxmputeSlate = "#d4d4cb";
 const cxmputeLightGreen = '#97e1bd'
 
 const EarningsStatisticsChart = ({ data = [] }) => {
-  const [highlightedIndex, setHighlightedIndex] = useState(null);
+    const [highlightedIndex, setHighlightedIndex] = useState<number | null>(null);
 
   // If no data is provided, use sample data
-  const chartData = data.length ? data : [
-    { date: '29 Jul', networkEarnings: 0, referrals: 5.3, total: 5.3 },
-    { date: '30 Jul', networkEarnings: 0, referrals: 5.3, total: 5.3 },
-    { date: '31 Jul', networkEarnings: 0, referrals: 5.3, total: 5.3 },
-    { date: '1 Aug', networkEarnings: 5.8, referrals: 5.3, total: 11.1 },
-    { date: '2 Aug', networkEarnings: 0, referrals: 5.3, total: 5.3 },
-    { date: '3 Aug', networkEarnings: 0, referrals: 5.3, total: 5.3 },
-    { date: '4 Aug', networkEarnings: 5.8, referrals: 5.3, total: 11.1 },
-    { date: '5 Aug', networkEarnings: 0, referrals: 1.1, total: 1.1 },
-    { date: '6 Aug', networkEarnings: 0, referrals: 0, total: 0 },
-    { date: '7 Aug', networkEarnings: 0, referrals: 7.7, total: 7.7 },
-    { date: '8 Aug', networkEarnings: 0, referrals: 5.3, total: 5.3 },
-    { date: '9 Aug', networkEarnings: 5.8, referrals: 5.3, total: 11.1 },
-    { date: '10 Aug', networkEarnings: 4.8, referrals: 5.3, total: 10.1 },
-    { date: '11 Aug', networkEarnings: 0, referrals: 5.3, total: 5.3 },
-    { date: '12 Aug', networkEarnings: 1.4, referrals: 5.3, total: 6.7 },
-    { date: '13 Aug', networkEarnings: 6.9, referrals: 5.3, total: 12.2 },
-    { date: '14 Aug', networkEarnings: 2.2, referrals: 5.3, total: 7.5 },
-    { date: '15 Aug', networkEarnings: 0, referrals: 4.8, total: 4.8 },
-    { date: '16 Aug', networkEarnings: 1.4, referrals: 5.3, total: 6.7 },
-    { date: '17 Aug', networkEarnings: 6, referrals: 5.3, total: 11.3 },
-    { date: '18 Aug', networkEarnings: 6.8, referrals: 5.3, total: 12.1 },
-    { date: '19 Aug', networkEarnings: 4.5, referrals: 5.3, total: 9.8 },
-    { date: '20 Aug', networkEarnings: 6.9, referrals: 5.3, total: 12.2 },
-    { date: '21 Aug', networkEarnings: 4.8, referrals: 5.3, total: 10.1 },
-    { date: '22 Aug', networkEarnings: 5.8, referrals: 5.3, total: 11.1 }
-  ];
+const chartData = data.length ? data : [
+    { date: '29 Jul', networkEarnings: 1.2, referrals: 6.3, total: 7.5 },
+    { date: '30 Jul', networkEarnings: 2.1, referrals: 4.8, total: 6.9 },
+    { date: '31 Jul', networkEarnings: 3.5, referrals: 5.1, total: 8.6 },
+    { date: '1 Aug', networkEarnings: 6.2, referrals: 4.3, total: 10.5 },
+    { date: '2 Aug', networkEarnings: 1.8, referrals: 3.9, total: 5.7 },
+    { date: '3 Aug', networkEarnings: 2.4, referrals: 4.7, total: 7.1 },
+    { date: '4 Aug', networkEarnings: 5.6, referrals: 6.2, total: 11.8 },
+    { date: '5 Aug', networkEarnings: 3.1, referrals: 2.5, total: 5.6 },
+    { date: '6 Aug', networkEarnings: 1.9, referrals: 2.1, total: 4.0 },
+    { date: '7 Aug', networkEarnings: 2.7, referrals: 7.3, total: 10.0 },
+    { date: '8 Aug', networkEarnings: 3.3, referrals: 5.4, total: 8.7 },
+    { date: '9 Aug', networkEarnings: 6.1, referrals: 4.9, total: 11.0 },
+    { date: '10 Aug', networkEarnings: 4.2, referrals: 6.3, total: 10.5 },
+    { date: '11 Aug', networkEarnings: 2.8, referrals: 5.7, total: 8.5 },
+    { date: '12 Aug', networkEarnings: 3.6, referrals: 4.5, total: 8.1 },
+    { date: '13 Aug', networkEarnings: 7.2, referrals: 6.1, total: 13.3 },
+    { date: '14 Aug', networkEarnings: 4.4, referrals: 5.2, total: 9.6 },
+    { date: '15 Aug', networkEarnings: 2.3, referrals: 4.8, total: 7.1 },
+    { date: '16 Aug', networkEarnings: 3.7, referrals: 5.9, total: 9.6 },
+    { date: '17 Aug', networkEarnings: 6.5, referrals: 4.7, total: 11.2 },
+    { date: '18 Aug', networkEarnings: 7.1, referrals: 5.4, total: 12.5 },
+    { date: '19 Aug', networkEarnings: 5.3, referrals: 6.2, total: 11.5 },
+    { date: '20 Aug', networkEarnings: 6.8, referrals: 5.7, total: 12.5 },
+    { date: '21 Aug', networkEarnings: 4.9, referrals: 6.3, total: 11.2 },
+    { date: '22 Aug', networkEarnings: 5.7, referrals: 5.8, total: 11.5 }
+];
+
+interface TooltipPayload {
+    payload: {
+        date: string;
+        networkEarnings: number;
+        referrals: number;
+        total: number;
+    };
+}
 
   // Custom tooltip
-const CustomTooltip = ({ active, payload }) => {
+const CustomTooltip = ({ active, payload }: { active: boolean; payload: TooltipPayload[] }) => {
     if (active && payload && payload.length) {
         const data = payload[0].payload;
         return (
@@ -89,7 +98,8 @@ return (
                         axisLine={false}
                     />
                     <YAxis hide={true} domain={[0, maxValue]} />
-                    <Tooltip content={<CustomTooltip />} cursor={false} />
+                    
+                    <Tooltip content={<CustomTooltip { ...{ active: false, payload: [] }}/>} cursor={false} />
                     <Bar 
                         dataKey="referrals" 
                         stackId="a" 
@@ -115,8 +125,8 @@ return (
                         {chartData.map((entry, index) => (
                             <Cell 
                                 key={`cell-${index}`} 
-                                fill={highlightedIndex === index ? cxmputeLightGreen : "#c2f0a1"}
-                                stroke={highlightedIndex === index ? cxmputeGreen : "#a6e775"}
+                                fill={cxmputeLightGreen}
+                                stroke={cxmputeGreen}
                             />
                         ))}
                     </Bar>

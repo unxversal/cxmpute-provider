@@ -298,3 +298,8 @@ a {
   background-color: var(--cxmpute-lightgreen);
   border-radius: 5px;
 }
+
+.statistics{
+  background-color: #f7e48c;
+  /* background-color: var(--cxmpute-pink); */
+}

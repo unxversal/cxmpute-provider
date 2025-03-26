@@ -1,8 +1,10 @@
 .chartContainer {
-  background-color: #ffffff;
+  /* background-color: var(--cxmpute-pink); */
+  /* background-color: #f6f6f6; */
+  /* background-color: #2d2d2d; */
   padding: 1rem;
   border-radius: 0.5rem;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  /* box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1); */
   width: 100%;
   max-width: 100%; /* Approximately max-w-4xl */
 }
