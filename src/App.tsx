@@ -5,7 +5,7 @@ import { Bell, Circle, ToggleLeft, ToggleRight, Users, Wifi } from "lucide-react
 import EarningsStatisticsChart from "./components/EarningsStatisticsChart/EarningsStatisticsChart";
 import { platform, arch } from '@tauri-apps/plugin-os';
 import Diagnostics from "./components/Diagnostics/Diagnostics";
-import { DiagnosticsType } from "./lib/interfaces";
+import { DeviceDiagnostics } from "./lib/interfaces";
 
 const cxmputeGreen = "#20a191";
 const cxmputePink = "#fe91e8";
@@ -21,7 +21,7 @@ function App() {
 
   const [username, setUsername] = useState("");
   const [screen, setScreen] = useState("diagnostics");
-  const [diagnostics, setDiagnostics] = useState<DiagnosticsType | null>(null);
+  const [diagnostics, setDiagnostics] = useState<DeviceDiagnostics | null>(null);
 
   const currentPlatform = platform();
   console.log(currentPlatform);
@@ -33,7 +33,7 @@ function App() {
     <main className="container">
       {}{screen==="diagnostics" && 
         <div className="diagnostics">
-          <Diagnostics />
+          <Diagnostics setDiagnostics={setDiagnostics}/>
         </div>
       }
       {screen==="dashboard" && <>

@@ -12,7 +12,6 @@ interface DiagnosticsData {
 }
 
 interface DiagnosticsProps {
-    diagnostics: DeviceDiagnostics | null;
     setDiagnostics: (diagnostics: DeviceDiagnostics | null) => void;
 }
 
