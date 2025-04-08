@@ -300,6 +300,6 @@ a {
 }
 
 .statistics{
-  background-color: #f7e48c;
+  background-color: var(--cxmpute-lightyellow);
   /* background-color: var(--cxmpute-pink); */
 }
