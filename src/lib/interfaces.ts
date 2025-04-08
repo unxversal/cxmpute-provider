@@ -1,9 +1,9 @@
 export interface DiagnosticsType {
-    osType: 'macOS' | 'Windows' | 'Linux'; // OS type
+    osType: "macOS" | "Windows" | "Linux"; // OS type
     gpu?: {
         name: string;
         memory: number; // Memory in MB
-        type: 'integrated' | 'dedicated';
+        type: "integrated" | "dedicated";
         supportsCUDA: boolean; // Whether the GPU supports CUDA
     };
     cpu?: {
@@ -30,7 +30,6 @@ export interface DiagnosticsType {
 }
 
 export interface DeviceDiagnostics {
-    macAddress: string;
     compute: DiagnosticsType;
-    type: 'nogpu' | 'gpu';
+    type: "nogpu" | "gpu";
 }

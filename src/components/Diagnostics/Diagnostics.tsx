@@ -3,7 +3,7 @@ import styles from "./Diagnostics.module.css";
 import { platform } from "@tauri-apps/plugin-os";
 import { Command } from "@tauri-apps/plugin-shell";
 import { load } from "@tauri-apps/plugin-store";
-
+import { DeviceDiagnostics } from "../../lib/interfaces";
 interface DiagnosticsData {
     memory: string;
     gpu: string;
@@ -11,49 +11,50 @@ interface DiagnosticsData {
     os: string;
 }
 
-export interface DiagnosticsType {
-    osType: "macOS" | "Windows" | "Linux"; // OS type
-    gpu?: {
-        name: string;
-        memory: number; // Memory in MB
-        type: "integrated" | "dedicated";
-        supportsCUDA: boolean; // Whether the GPU supports CUDA
-    };
-    cpu?: {
-        name: string;
-        cores: number;
-        threads: number;
-        architecture: string;
-    };
-    memory?: {
-        total: number; // Total memory in MB
-        used: number; // Used memory in MB
-        free: number; // Free memory in MB
-    };
-    storage?: {
-        total: number; // Total storage in MB
-        used: number; // Used storage in MB
-        free: number; // Free storage in MB
-    };
-    os?: {
-        name: string;
-        version: string;
-        architecture: string;
-    };
+interface DiagnosticsProps {
+    diagnostics: DeviceDiagnostics | null;
+    setDiagnostics: (diagnostics: DeviceDiagnostics | null) => void;
 }
 
-export interface DeviceDiagnostics {
-    compute: DiagnosticsType;
-    type: "nogpu" | "gpu";
-}
 
-const Diagnostics: React.FC = () => {
+
+export default function Diagnostics(props: DiagnosticsProps) {
     const [data, setData] = useState<DiagnosticsData | null>(null);
     const [error, setError] = useState<string | null>(null);
 
     useEffect(() => {
         async function runDiagnostics() {
             try {
+                // Load the store and check if diagnostics have already been stored.
+                const store = await load("store.json", { autoSave: false });
+                const storedDiagnostics = await store.get<DeviceDiagnostics>("deviceDiagnostics");
+
+
+                if (storedDiagnostics) {
+                // Diagnostics data exists; use it to update the UI.
+                const deviceDiagnostics = storedDiagnostics;
+                const memoryDisplay = deviceDiagnostics.compute.memory
+                    ? `${deviceDiagnostics.compute.memory.total} MB`
+                    : "N/A";
+                const gpuDisplay = deviceDiagnostics.compute.gpu
+                    ? `${deviceDiagnostics.compute.gpu.memory} MB`
+                    : "N/A";
+                const storageDisplay = deviceDiagnostics.compute.storage
+                    ? `${deviceDiagnostics.compute.storage.free} MB`
+                    : "N/A";
+                const osDisplay = deviceDiagnostics.compute.os
+                    ? `${deviceDiagnostics.compute.os.name} ${deviceDiagnostics.compute.os.version}`
+                    : "Unknown OS";
+                setData({
+                    memory: memoryDisplay,
+                    gpu: gpuDisplay,
+                    storage: storageDisplay,
+                    os: osDisplay,
+                });
+                props.setDiagnostics(storedDiagnostics);
+                console.log("Diagnostics loaded from store:", deviceDiagnostics);
+                return;
+                }
                 const currentPlatform = await platform();
                 console.log("Platform:", currentPlatform);
                 
@@ -230,9 +231,9 @@ const Diagnostics: React.FC = () => {
                 };
 
                 // Store the diagnostics using the Tauri Store plugin.
-                const store = await load("store.json", { autoSave: false });
                 await store.set("deviceDiagnostics", deviceDiagnostics);
                 await store.save();
+                props.setDiagnostics(deviceDiagnostics);
                 console.log("Diagnostics stored:", deviceDiagnostics);
             } catch (err) {
                 console.error("Error running diagnostics:", err);
@@ -271,5 +272,3 @@ const Diagnostics: React.FC = () => {
         </div>
     );
 };
-
-export default Diagnostics;
