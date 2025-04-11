@@ -1,7 +1,6 @@
 import express from 'express';
 import chat from './chat';
 import MessageResponse from '../interfaces/MessageResponse';
-import embeddings from './embeddings';
 
 const router = express.Router();
 
@@ -12,6 +11,5 @@ router.get<{}, MessageResponse>('/', (req, res) => {
 });
 
 router.use('/chat/completions', chat);
-router.use('/embeddings', embeddings);
 
 export default router;

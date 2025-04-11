@@ -8,6 +8,9 @@ import * as middlewares from './middlewares';
 import api from './api';
 import MessageResponse from './interfaces/MessageResponse';
 import portfinder from 'portfinder';
+import embeddings from './api/embeddings';
+
+type Server = 'ollama' | 'embeddings' | 'video' | 'image' | 'tts' | 'codexec' | 'scrape' | 'moon'
 
 require('dotenv').config();
 
@@ -24,7 +27,7 @@ app.get<{}, MessageResponse>('/', (req, res) => {
   });
 });
 
-app.use('/api/v1', api);
+// app.use('/api/v1', api);
 
 app.use(middlewares.notFound);
 app.use(middlewares.errorHandler);
@@ -52,6 +55,41 @@ const startServer = async (params?: any) => {
   if (server) {
     console.log(JSON.stringify({ status: 'already_running', url }));
     return;
+  }
+
+  if (params?.servers) {
+    // params.servers is a string[] with the server names in the server type
+    // iterate through the servers, and add them to app with app.use
+    for (const server of params.servers) {
+      switch (server) {
+        case 'ollama':
+          app.use('/api/v1/', api);
+          break;
+        case 'embeddings':
+          app.use('/api/v1/embeddings', embeddings);
+          break;
+        case 'video':
+          app.use('/api/v1/video', video);
+          break;
+        case 'image':
+          app.use('/api/v1/image', image);
+          break;
+        case 'tts':
+          app.use('/api/v1/tts', tts);
+          break;
+        case 'codexec':
+          app.use('/api/v1/codexec', codexec);
+          break;
+        case 'scrape':
+          app.use('/api/v1/scrape', scrape);
+          break;
+        case 'moon':
+          app.use('/api/v1/moon', moon);
+          break;
+        default:
+          console.error(JSON.stringify({ status: 'error', message: `Unknown server type: ${server}` }));
+      }
+    }
   }
   
   server = app.listen(port, () => {
