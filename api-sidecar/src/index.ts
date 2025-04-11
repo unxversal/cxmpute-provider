@@ -11,6 +11,7 @@ import portfinder from 'portfinder';
 import embeddings from './api/embeddings';
 import { createVideoRouter } from './api/video';
 import image from './api/image';
+import tts from './api/tts';
 
 type Server = 'ollama' | 'embeddings' | 'video' | 'image' | 'tts' | 'codexec' | 'scrape' | 'moon'
 
