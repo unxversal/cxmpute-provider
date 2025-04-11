@@ -25,7 +25,8 @@
     "express": "^4.21.1",
     "helmet": "^8.0.0",
     "morgan": "^1.10.0",
-    "ollama": "^0.5.14"
+    "ollama": "^0.5.14",
+    "tunnelmole": "^2.3.8"
   },
   "devDependencies": {
     "@types/cors": "^2.8.17",

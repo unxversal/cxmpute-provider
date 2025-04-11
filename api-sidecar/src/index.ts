@@ -1,4 +1,5 @@
 import app from './app';
+import { tunnelmole } from 'tunnelmole';
 
 const command = process.argv[2];
 const paramsArg = process.argv[3];
@@ -6,16 +7,20 @@ const paramsArg = process.argv[3];
 let server: any = null;
 
 // Function to start the server
-const startServer = (params?: any) => {
+const startServer = async (params?: any) => {
   const port = params?.port || process.env.PORT || 5000;
+
+  const url = await tunnelmole({
+    port,
+  });
   
   if (server) {
-    console.log(JSON.stringify({ status: 'already_running', port }));
+    console.log(JSON.stringify({ status: 'already_running', url }));
     return;
   }
   
   server = app.listen(port, () => {
-    console.log(JSON.stringify({ status: 'started', port, params }));
+    console.log(JSON.stringify({ status: 'started', url, params }));
   });
 };
 

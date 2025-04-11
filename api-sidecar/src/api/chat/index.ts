@@ -4,16 +4,21 @@ import ollama from 'ollama';
 const router = express.Router();
 
 router.post('/', async (req, res) => {
-  // Extract required fields from the request body
-  // Expecting at least: model and messages
+  // Extract required fields from the request body.
   const { model, messages, stream, ...options } = req.body;
 
-  // Validate required parameters
+  // Validate required parameters: model and messages must be provided.
   if (!model || !messages) {
     return res.status(400).json({ error: 'Missing model or messages parameter' });
   }
 
   try {
+    // Construct the payload that will be sent to Ollama.
+    // If images are provided, include them in the payload. Images may be provided as:
+    //  - a Uint8Array 
+    //  - base64 encoded strings
+    const payload = { model, messages, ...options };
+
     // Handle streaming responses separately
     if (stream) {
       // Set headers for Server-Sent Events (SSE)
@@ -22,7 +27,8 @@ router.post('/', async (req, res) => {
       res.setHeader('Connection', 'keep-alive');
       
       // Call Ollama with stream enabled so that it returns an AsyncGenerator
-      const responseStream = await ollama.chat({ model, messages, stream: true, ...options });
+      // Note that we explicitly set stream: true in the call.
+      const responseStream = await ollama.chat({ ...payload, stream: true });
 
       // Iterate over the async generator and send each part as an SSE message
       for await (const part of responseStream) {
@@ -34,12 +40,12 @@ router.post('/', async (req, res) => {
       res.end();
     } else {
       // For non-streaming requests: await the full response from Ollama
-      const response = await ollama.chat({ model, messages, ...options });
+      const response = await ollama.chat(payload);
       res.json(response);
     }
   } catch (error) {
     console.error('Error in /chat/completions:', error);
-    res.status(500).json({ error: (error as any).message });
+    res.status(500).json({ error: (error as Error).message });
   }
 });
 
