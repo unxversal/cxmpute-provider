@@ -40,7 +40,9 @@ let server: any = null;
 const startServer = async (params?: any) => {
   let port = params?.port || process.env.PORT;
   if (!port) {
-    port = await portfinder.getPortPromise();
+    port = await portfinder.getPortPromise({
+      port: 12000,
+    });
   }
 
   const url = await tunnelmole({
