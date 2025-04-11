@@ -53,7 +53,9 @@ router.post('/', async (req: Request, res: Response) => {
     // 5) Stream back the audio as a WAV file.
     //    By default, kokoro-js returns a WAV in the Audio object.
     res.setHeader('Content-Type', 'audio/wav');
-    audio.toStream().pipe(res);
+    const wavData = audio.toWav();
+    res.send(Buffer.from(wavData));
+
   } catch (error) {
     console.error('Error in /tts route:', error);
     res.status(500).json({ error: (error as Error).message });
