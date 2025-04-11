@@ -57,11 +57,12 @@ const startServer = async (params?: any) => {
     return;
   }
 
+  // conditionally add server routes
   if (params?.servers) {
     // params.servers is a string[] with the server names in the server type
     // iterate through the servers, and add them to app with app.use
-    for (const server of params.servers) {
-      switch (server) {
+    for (const serve of params.servers) {
+      switch (serve) {
         case 'ollama':
           app.use('/api/v1/', api);
           break;
@@ -91,6 +92,8 @@ const startServer = async (params?: any) => {
       }
     }
   }
+
+  // check ollama models and install model if needed
   
   server = app.listen(port, () => {
     console.log(JSON.stringify({ status: 'started', url, params }));
@@ -103,6 +106,8 @@ const stopServer = (params?: any) => {
     console.log(JSON.stringify({ status: 'not_running' }));
     return;
   }
+
+  // check models and delete model if needed
   
   server.close(() => {
     server = null;
