@@ -10,6 +10,7 @@ import MessageResponse from './interfaces/MessageResponse';
 import portfinder from 'portfinder';
 import embeddings from './api/embeddings';
 import { createVideoRouter } from './api/video';
+import image from './api/image';
 
 type Server = 'ollama' | 'embeddings' | 'video' | 'image' | 'tts' | 'codexec' | 'scrape' | 'moon'
 
