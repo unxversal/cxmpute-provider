@@ -1,10 +1,19 @@
 /* eslint-disable import/no-extraneous-dependencies */
 import { Router, Request, Response } from 'express';
-import { DiffusionPipeline } from '@aislamov/diffusers.js';
+import { DiffusionPipeline, StableDiffusionPipeline } from '@aislamov/diffusers.js';
 import { PNG } from 'pngjs';
 
 const router = Router();
 const model = 'aislamov/stable-diffusion-2-1-base-onnx';
+// 1) Create or Load the pipeline.
+let pipe: StableDiffusionPipeline;
+
+(async () => {
+  // create or load the pipeline
+  pipe = await DiffusionPipeline.fromPretrained(model);
+})().catch((err) => {
+  console.error('Error initializing pipeline:', err);
+});
 
 /**
  * POST /api/v1/image
@@ -12,7 +21,6 @@ const model = 'aislamov/stable-diffusion-2-1-base-onnx';
  * Example JSON Body:
  * {
  *   "prompt": "an astronaut riding a horse",
- *   "model": "aislamov/stable-diffusion-2-1-base-onnx",
  *   "numInferenceSteps": 30,
  *   "width": 512,
  *   "height": 512
@@ -22,6 +30,7 @@ router.post('/', async (req: Request, res: Response) => {
   try {
     const {
       prompt,            // A default prompt if none provided
+      negativePrompt,    // Optional negative prompt
       numInferenceSteps = 30,                            // Inference steps
       width = 512,
       height = 512,
@@ -31,25 +40,16 @@ router.post('/', async (req: Request, res: Response) => {
       return res.status(400).json({ error: 'Prompt is required.' });
     }
 
-    // 1) Create or Load the pipeline.
-    //    - This can be expensive, so in production you may want to:
-    //      (a) do it once globally, OR
-    //      (b) cache pipelines by model name, etc.
-    const pipe = await DiffusionPipeline.fromPretrained(model);
-    // If you want to ensure GPU usage, do something like:
-    //    pipe.to('gpu'); // or pipe.to('webgpu'), depending on the environment
-
     // 2) Generate the image(s) by calling .run().
-    //    - We can pass various options (width, height, etc.).
-    //    - Note: diffusers.js may not allow resizing easily. Some models expect 512x512.
-    //      If your pipeline or model requires 512x512, you can skip dynamic resizing,
-    //      or check the library for how to pass custom sizes.
     const images = await pipe.run({
       prompt,
+      negativePrompt,
       numInferenceSteps,
-      // diffusers.js might not accept arbitrary width/height. 
-      // If your model does, you might pass something like:
-      // width, height
+      height,
+      width,
+      progressCallback: async (progress: any): Promise<void> => {
+        console.log(progress);
+      },
     });
 
     // images is an array of Tensors in shape [N, C, W, H].
