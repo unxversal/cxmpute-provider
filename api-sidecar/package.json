@@ -20,12 +20,14 @@
   },
   "license": "MIT",
   "dependencies": {
+    "@aislamov/diffusers.js": "^0.9.3",
     "cors": "^2.8.5",
     "dotenv": "^16.4.5",
     "express": "^4.21.1",
     "helmet": "^8.0.0",
     "morgan": "^1.10.0",
     "ollama": "^0.5.14",
+    "pngjs": "^7.0.0",
     "portfinder": "^1.0.35",
     "tunnelmole": "^2.3.8"
   },
@@ -35,6 +37,7 @@
     "@types/jest": "^29.5.13",
     "@types/morgan": "^1.9.9",
     "@types/node": "^22.7.5",
+    "@types/pngjs": "^6.0.5",
     "@types/supertest": "^6.0.2",
     "@typescript-eslint/eslint-plugin": "^7.16.1",
     "@typescript-eslint/parser": "^7.16.1",
