@@ -1,3 +1,4 @@
+/* eslint-disable import/no-extraneous-dependencies */
 import app from './app';
 import { tunnelmole } from 'tunnelmole';
 
