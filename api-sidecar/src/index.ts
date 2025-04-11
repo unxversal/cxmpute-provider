@@ -7,6 +7,7 @@ import cors from 'cors';
 import * as middlewares from './middlewares';
 import api from './api';
 import MessageResponse from './interfaces/MessageResponse';
+import portfinder from 'portfinder';
 
 require('dotenv').config();
 
@@ -37,7 +38,10 @@ let server: any = null;
 
 // Function to start the server
 const startServer = async (params?: any) => {
-  const port = params?.port || process.env.PORT || 5000;
+  let port = params?.port || process.env.PORT;
+  if (!port) {
+    port = await portfinder.getPortPromise();
+  }
 
   const url = await tunnelmole({
     port,
