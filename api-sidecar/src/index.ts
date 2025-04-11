@@ -9,6 +9,7 @@ import api from './api';
 import MessageResponse from './interfaces/MessageResponse';
 import portfinder from 'portfinder';
 import embeddings from './api/embeddings';
+import { createVideoRouter } from './api/video';
 
 type Server = 'ollama' | 'embeddings' | 'video' | 'image' | 'tts' | 'codexec' | 'scrape' | 'moon'
 
@@ -70,7 +71,11 @@ const startServer = async (params?: any) => {
           app.use('/api/v1/embeddings', embeddings);
           break;
         case 'video':
-          app.use('/api/v1/video', video);
+          const videoRouter = createVideoRouter({
+            generatePyFileRoute: params.generatePyFileRoute, 
+            wanModelRoute: params.wanModelRoute,
+          });
+          app.use('/api/v1/video', videoRouter);
           break;
         case 'image':
           app.use('/api/v1/image', image);
